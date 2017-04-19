@@ -1,0 +1,89 @@
+body {
+    background-image: url(image/bodybackground.jpg);
+}
+#pbloc {
+    left: 80px;
+    top: 50px;
+}
+#menu {
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    background-color:#303030;
+    opacity: 0.9;
+}
+#bloc{
+    opacity:0.75;
+    padding: 0px;
+    height:200px;
+    width: 150px;
+    box-shadow: 10px 10px 10px 10px;
+    margin-left: 100px;
+    margin-top:100px;
+}
+
+#bloc img{
+    height: 100%;
+    width:100%;
+}
+
+#bodybtn {
+    width: 170px;
+    height: 50px;
+    position: relative;
+    top: 160px;
+    left: 550px;
+    color: white;
+    font-family:cursive;
+    font-size: 15px;
+    background-image: url(image/background.jpg);
+    filter: grayscale(100%);
+}
+
+#menubtn {
+    position: relative;
+    width: 170px;
+    height: 30px;
+    top:20px;
+    left: 20px;
+    color: white;
+    font-family:cursive;
+    font-size: 15px;
+    background-image: url(image/background.jpg);
+}
+
+#crédit {
+    color:white;
+    font-family:serif;
+    font-size: 14px;
+    position:relative;
+    top:25px;
+    left: 20px;
+}
+
+#disabled {
+    top: 100px;
+    left: 375px; 
+    width: 600px; 
+    height: 400px;
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    z-index: 1000;
+}
+
+#close {
+    
+    border-radius: 50px;
+    border: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: red;
+    color: white;
+}
+
+iframe {
+    position: relative;
+    top:50px;
+    left:0px;
+}

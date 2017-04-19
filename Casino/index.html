@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Roulette </title>
+        
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="main.css">
+    </head>
+
+
+    <body>
+        <div id ="menu">
+            <button id="menubtn">Nouvelle partie</button>
+            <p id="crédit"></p>
+        </div>
+
+         <div id="pbloc" class="col-xs-12">
+                <div class="row">
+                    <div id="bloc" class="col-md-3">
+                        <img src="" id = "image1"/>
+                    </div>
+                    <div id="bloc" class="col-md-3">
+                        <img src="" id = "image2"/>
+                    </div>
+                     <div id="bloc" class="col-md-3">  
+                        <img src="" id = "image3"/>
+                    </div>
+                    <div id="bloc" class="col-md-3">
+                         <img src="" id = "image4"/>
+                    </div>
+                </div>
+            </div>
+    
+        
+        <button id="bodybtn" disabled="disabled"> Lançez la roulette </button>
+
+    </body>
+        
+    <script>
+        
+        var sc,
+            
+            menubtn = document.querySelector('#menubtn'),
+            bodybtn = document.querySelector('#bodybtn'),
+            
+            img1 = document.querySelector('#image1'),
+            img2 = document.querySelector('#image2'),
+            img3 = document.querySelector('#image3'),
+            img4 = document.querySelector('#image4'),
+            
+            crdt = document.querySelector('#crédit');
+        
+        
+        function NewGame() {
+            
+            menubtn.addEventListener('click', function() {
+                
+                sc =20;
+                bodybtn.disabled = false;
+                bodybtn.style.filter = "grayscale(0%)";
+                
+                crdt.innerHTML = 'Crédits : ' + sc + '';
+                menubtn.style.filter = "grayscale(100%)";
+                menubtn.disabled = true;
+                
+            });
+        }
+        
+        NewGame();
+        
+        function Score() {
+            if (img1.src == img2.src &&
+                img1.src == img3.src &&
+                img1.src == img4.src) {
+                
+                sc+=5;
+                crdt.innerHTML = 'Crédits : ' + sc + '';
+                
+                var winDiv = document.createElement('div');
+                winDiv.id = 'disabled'; 
+                document.querySelector('body').appendChild(winDiv);
+                
+                winDiv.innerHTML = '<button id ="close"> X </button> <iframe width="600" height="300" src="https://www.youtube.com/embed/wsLEatlNmxw?rel=0&amp;autoplay=1&loop=1&playlist=wsLEatlNmxw" frameborder="0" allowfullscreen></iframe>';
+                
+                document.querySelector('#close').addEventListener('click', function() {
+                    
+                    winDiv.innerHTML = '';
+                    document.querySelector('body').removeChild(winDiv);
+                    
+                });
+            }
+           
+            
+            if (sc == 0) {
+                bodybtn.disabled = true;
+                bodybtn.style.filter = "grayscale(100%)";
+                
+                menubtn.style.filter = "grayscale(0%)";
+                menubtn.disabled = false;
+            }
+        }
+        
+        function initialisation() {
+            var rand = [];
+            
+            for (var idx = 0; idx <= 4; idx++) {
+                var x = Math.floor(Math.random() * 4) + 1;
+                rand.push(x);
+            }
+            img1.src = 'image/image' + rand[1] + '.jpg';
+            img2.src = 'image/image' + rand[2] + '.jpg';
+            img3.src = 'image/image' + rand[3] + '.jpg';
+            img4.src = 'image/image' + rand[4] + '.jpg';
+        }
+        
+        initialisation();
+        
+        var i = 0,
+            j = 0,
+            k = 0,
+            l = 0;
+        
+        bodybtn.addEventListener('click', function () {
+            
+            bodybtn.disabled = true;
+            bodybtn.style.filter = "grayscale(100%)";
+            
+            sc-=1;
+            //sc-=20;
+           
+            crdt.innerHTML = 'Crédits : ' + sc + '';
+            
+            var ID1 = setInterval(function() {
+                i=Math.floor(Math.random() * 4) + 1; j=Math.floor(Math.random() * 4) + 1; k=Math.floor(Math.random() * 4) + 1; l=Math.floor(Math.random() * 4) + 1;
+                
+                //i = j = k = l = 1;
+                
+                img1.src = 'image/image' + i + '.jpg';
+                img2.src = 'image/image' + j + '.jpg';
+                img3.src = 'image/image' + k + '.jpg';
+                img4.src = 'image/image' + l + '.jpg';
+            
+                var ID2 = setTimeout(function() {
+                    clearInterval(ID1);
+                }, 3000);
+                
+            }, 80);
+            
+            var ID3 = setTimeout(function() {
+                        Score();
+                    }, 4000);
+            
+            var ID4 = setTimeout(function() {
+                        if (sc > 0) {
+                            bodybtn.disabled = false;
+                            bodybtn.style.filter = "grayscale(0%)";
+                        }
+                    }, 4000);
+        });
+
+        
+    </script>
+
+</html>
+    
